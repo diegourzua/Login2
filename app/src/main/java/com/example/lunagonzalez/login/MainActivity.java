@@ -2,6 +2,8 @@ package com.example.lunagonzalez.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         nuevo = (Button) findViewById(R.id.btnRegistrar);
 
 
-
         nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,39 +45,38 @@ public class MainActivity extends AppCompatActivity {
                 Context contexto = getApplication();
                 int tiempo = Toast.LENGTH_SHORT;
 
-                if(usuario.length() <= 0 ) {
+                if (usuario.length() <= 0) {
 
-                    Toast toast = Toast.makeText(contexto,"Debe ingresar un usuario",tiempo);
+                    Toast toast = Toast.makeText(contexto, "Debe ingresar un usuario", tiempo);
                     toast.show();
-                }else{
-                    if (pass.length() <= 0 )
-                    {
-                        Toast toast = Toast.makeText(contexto,"Debe ingresar una contraseña",tiempo);
+                } else {
+                    if (pass.length() <= 0) {
+                        Toast toast = Toast.makeText(contexto, "Debe ingresar una contraseña", tiempo);
                         toast.show();
-                    }else{
-                        if (pass.length() < 6 )
-                        {
-                            Toast toast = Toast.makeText(contexto,"La contraseña debe tener minimo 6 caracteres",tiempo);
+                    } else {
+                        if (pass.length() < 6) {
+                            Toast toast = Toast.makeText(contexto, "La contraseña debe tener minimo 6 caracteres", tiempo);
                             toast.show();
-                        }else{
+                        } else {
 
-                            if(usuario.getText().toString().equals("palta") && pass.getText().toString().equals("hola123")){
+                            SharedPreferences sp = getSharedPreferences("datos",contexto.MODE_PRIVATE);
+                            String gUsuario = sp.getString("nUsuario", "No name defined");
+                            String gPass = sp.getString("nPass", "No name defined");
 
-                                Intent intentMenu = new Intent(MainActivity.this,Main2Activity.class);
+                            if (usuario.getText().toString().equals(gUsuario) && pass.getText().toString().equals(gPass)){
+                                Intent intentMenu = new Intent(MainActivity.this, Main2Activity.class);
                                 String loguear = usuario.getText().toString();
                                 intentMenu.putExtra("logueado", loguear);
                                 startActivity(intentMenu);
 
-                            }else{
+                            } else {
 
-                                Toast toast = Toast.makeText(contexto,"Usuario invalido",tiempo);
+                                Toast toast = Toast.makeText(contexto, "Usuario NO Registrado", tiempo);
                                 toast.show();
                             }
-
-
                         }
                     }
-                }
+               }
             }
         });
     }
