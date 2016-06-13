@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/cazuela"
     tools:context="com.example.lunagonzalez.login.registroActiviy">
 
 
@@ -25,6 +26,7 @@
         android:id="@+id/Anuncio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="Ingrese datos "
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
@@ -36,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@+id/Anuncio"
+        android:textStyle="bold"
         android:text="Nombre de Usuario: "
         android:layout_margin="@dimen/activity_horizontal_margin"/>
 
@@ -52,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@+id/txtUser"
+        android:textStyle="bold"
         android:text="Contraseña: : "
         android:layout_margin="@dimen/activity_horizontal_margin"/>
 
